@@ -63,9 +63,8 @@ export SVN_EDITOR="mate -w"
 #ruby
 alias gem='sudo gem'
 
-#webfaction
-alias sshwf='ssh kpf@kpf.webfactional.com'
-alias sshgp='ssh -p 2022 kyle@magnus.greenplaque.com'
+#ssh aliases
+source .ssh_aliases
 
 #firefox
 alias firefox='open -a /Applications/Firefox.app/'
