@@ -19,24 +19,14 @@ PATH+=:/opt/local/bin
 export PS1="\h:\W$ "
 color_prompt=yes
 
-
 #editor
-export EDITOR=emacs
+export EDITOR=vim
 #"mate -w"
 alias edit=$EDITOR
-
-#shortcuts
-alias jhu='cd ~/xsrc/learn/jhu'
-alias ibt='cd ~/xsrc/ibt'
-
-#dev firefox
-alias devfirefox='/Applications/Firefox.app/Contents/MacOS/firefox-bin -no-remote -P'
-
 
 #general shell
 alias ^L=clear #seems to be default anyway
 alias ls='ls -FhG'
-#--color=tty
 alias l=ls
 alias sl=ls
 alias lsl='ls ./*'
@@ -54,24 +44,22 @@ alias p="popd"
 alias prev="popd"
 
 #svn
-alias s='svn stat'
+#alias s='svn stat'
 alias si='svn propedit svn:ignore'
-alias +='svn add'
-alias x='svn rm'
-export SVN_EDITOR="mate -w"
+#alias +='svn add'
+#alias x='svn rm'
 
 #ruby
 alias gem='sudo gem'
 
 #ssh aliases
-source .ssh_aliases
+source ~/.ssh_aliases
 
 #firefox
 alias firefox='open -a /Applications/Firefox.app/'
 
 #ls colors
 export CLICOLOR=1
-#export LSCOLORS="xefxcxdxxxegedabagacad"
 export LSCOLORS="exbxxexcbxxfxgdxAxExGx"
 
 #trash function
@@ -105,14 +93,8 @@ alias gcc120='gcc -ansi -std=c99 -pedantic -Wall -Wextra -O '
 export BOOST_ROOT=/usr/include/boost_1_43_0
 alias g++boost='g++ -I $BOOST_ROOT '
 
-
-
-
 #mono
 export MONODIR=/Library/Frameworks/Mono.framework/Versions/2.4/
-# export DYLD_LIBRARY_PATH=$MONODIR'lib'
-# export PKG_CONFIG_PATH=$MONODIR'lib/pkgconfig'
-# export MONO_PATH=$MONODIR'lib'
 PATH+=:$MONODIR'bin'
 
 #flex
@@ -121,29 +103,7 @@ PATH+=:$FLEXDIR'bin'
 
 #python
 export PYTHONSTART=/Users/kf/.kpfscripts/pythonstartup.py
-#export PYSITE=/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/site-packages/
-#export PYDIR=/Library/Frameworks/Python.framework/Versions/2.5/
-#PATH+=:$PYDIR'bin'
-
-#for shine
-#PYTHONPATH+=:'/Users/kf/xsrc/shine/lib/python2.5'
-#PYTHONPATH+=:'/Users/kf/xsrc/shine/external'
-
-# export PYTHONPATH= #clear, then add
-# #used to be $PYDIR'bin/python'
-# PYTHONPATH=''
-# PYTHONPATH=$PYDIR'bin'
-# PYTHONPATH+=:$PYDIR'lib/python2.5/site-packages/'
-
-#for karen's site
-# PYTHONPATH='/Users/kf/xsrc/wfsites/harmsvn/lib/python2.5/'
-# PATH+=:'/Users/kf/xsrc/wfsites/harmsvn/lib/python2.5/django/bin/'
-# PYTHONPATH+=:'/Users/kf/xsrc/wfsites/commonapps'
-export PYTHONPATH
-
-
-#komodo
-alias ko='/Applications/Komodo IDE.app/Contents/MacOS/komodo-bin'
+export PYTHONPATH=/Library/Python/2.6/site-packages/
 
 #go language
 export GOROOT='/Users/kf/lib/go/'
@@ -152,30 +112,121 @@ export GOARCH='386'
 export GOBIN='/Users/kf/bin/go/'
 PATH+=:$GOBIN
 
-#komodo
-alias ko='open -a "Komodo IDE"'
-
-
-# Setting PATH for MacPython 2.6
-# The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/2.6/bin:${PATH}"
-#export PATH
 
 # MacPorts Installer addition on 2009-11-18_at_21:53:00: adding an appropriate PATH variable for use with MacPorts.
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
+
+## Custom prompt
+# Colors
+       RED="\[\033[0;31m\]"
+      PINK="\[\033[1;31m\]"
+    YELLOW="\[\033[1;33m\]"
+     GREEN="\[\033[0;32m\]"
+  LT_GREEN="\[\033[1;32m\]"
+      BLUE="\[\033[0;34m\]"
+     WHITE="\[\033[1;37m\]"
+    PURPLE="\[\033[1;35m\]"
+      CYAN="\[\033[1;36m\]"
+     BROWN="\[\033[0;33m\]"
+COLOR_NONE="\[\033[0m\]"
+
+LIGHTNING_BOLT="⚡"
+      UP_ARROW="↑"
+    DOWN_ARROW="↓"
+      UD_ARROW="↕"
+      FF_ARROW="→"
+       RECYCLE="♺"
+        MIDDOT="•"
+     PLUSMINUS="±"
 
 
-# Setting PATH for Python 2.7
-# The orginal version is saved in .bash_profile.pysave
-#PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-export PATH
+function parse_git_branch {
+  branch_pattern="^# On branch ([^${IFS}]*)"
+  remote_pattern_ahead="# Your branch is ahead of"
+  remote_pattern_behind="# Your branch is behind"
+  remote_pattern_ff="# Your branch (.*) can be fast-forwarded."
+  diverge_pattern="# Your branch and (.*) have diverged"
 
-##
-# Your previous /Users/kf/.bash_profile file was backed up as /Users/kf/.bash_profile.macports-saved_2010-10-10_at_14:42:56
-##
+  git_status="$(git status 2> /dev/null)"
+  if [[ ! ${git_status} =~ ${branch_pattern} ]]; then
+    # Rebasing?
+    toplevel=$(git rev-parse --show-toplevel 2> /dev/null)
+    [[ -z "$toplevel" ]] && return
 
-# MacPorts Installer addition on 2010-10-10_at_14:42:56: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
+    [[ -d "$toplevel/.git/rebase-merge" || -d "$toplevel/.git/rebase-apply" ]] && {
+      sha_file="$toplevel/.git/rebase-merge/stopped-sha"
+      [[ -e "$sha_file" ]] && {
+        sha=`cat "${sha_file}"`
+      }
+      echo "${PINK}(rebase in progress)${COLOR_NONE} ${sha}"
+    }
+    return
+  fi
+
+  branch=${BASH_REMATCH[1]}
+
+  # Dirty?
+  if [[ ! ${git_status} =~ "working directory clean" ]]; then
+    [[ ${git_status} =~ "modified:" ]] && {
+      git_is_dirty="${RED}${LIGHTNING_BOLT}"
+    }
+
+    [[ ${git_status} =~ "Untracked files" ]] && {
+      git_is_dirty="${git_is_dirty}${WHITE}${MIDDOT}"
+    }
+
+    [[ ${git_status} =~ "new file:" ]] && {
+      git_is_dirty="${git_is_dirty}${LT_GREEN}+"
+    }
+
+    [[ ${git_status} =~ "deleted:" ]] && {
+      git_is_dirty="${git_is_dirty}${RED}-"
+    }
+
+    [[ ${git_status} =~ "renamed:" ]] && {
+      git_is_dirty="${git_is_dirty}${YELLOW}→"
+    }
+  fi
+
+  # Are we ahead of, beind, or diverged from the remote?
+  if [[ ${git_status} =~ ${remote_pattern_ahead} ]]; then
+    remote="${YELLOW}${UP_ARROW}"
+  elif [[ ${git_status} =~ ${remote_pattern_ff} ]]; then
+    remote_ff="${WHITE}${FF_ARROW}"
+  elif [[ ${git_status} =~ ${remote_pattern_behind} ]]; then
+    remote="${YELLOW}${DOWN_ARROW}"
+  elif [[ ${git_status} =~ ${diverge_pattern} ]]; then
+    remote="${YELLOW}${UD_ARROW}"
+  fi
+
+  echo "${remote}${remote_ff}${GREEN}(${branch})${COLOR_NONE}${git_is_dirty}${COLOR_NONE}"
+}
+
+function setWindowTitle {
+  case $TERM in
+    *xterm*|ansi)
+      echo -n -e "\033]0;$*\007"
+      ;;
+  esac
+}
+
+function set_prompt {
+
+  git_prompt="$(parse_git_branch)"
+
+  export PS1="[\w] ${git_prompt}${COLOR_NONE}\n\$ "
+
+  # Domain is stripped from hostname
+  case $HOSTNAME in
+    adamv-desktop.local|Flangymobile08.local)
+      this_host=
+      ;;
+    *)
+      this_host="${HOSTNAME%%.*}:"
+      ;;
+  esac
+
+  setWindowTitle "${this_host}${PWD/$HOME/~}"
+}
+export PROMPT_COMMAND=set_prompt
 

@@ -140,11 +140,11 @@ noremap <C-j> <C-w><C-j>
 noremap <C-k> <C-w><C-k>
 noremap <C-l> <C-w><C-l>
 " Copy paste using system clipboard
-vmap <C-y> "+y
-vmap <C-u> "+p
-nmap <C-u> "+p
-imap <C-u> <esc>"+p
-imap <C-v> <esc>pa
+"vmap <C-y> "+y
+"vmap <C-u> "+p
+"nmap <C-u> "+p
+"imap <C-u> <esc>"+p
+"imap <C-v> <esc>pa
 " Home/end like emacs and bash
 nmap <C-e> $
 imap <C-e> <End>
