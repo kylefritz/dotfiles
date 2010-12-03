@@ -214,7 +214,7 @@ function set_prompt {
 
   git_prompt="$(parse_git_branch)"
 
-  export PS1="[\w] ${git_prompt}${COLOR_NONE}\n\$ "
+  export PS1="\h [\w] ${git_prompt}${COLOR_NONE}\n\$ "
 
   # Domain is stripped from hostname
   case $HOSTNAME in
