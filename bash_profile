@@ -113,4 +113,4 @@ export GOBIN='/Users/kf/bin/go/'
 PATH+=:$GOBIN
 
 #pull in prompt
-source ~/.dotfiles/bash_prompt
+source ~/.dotfiles/prompt
