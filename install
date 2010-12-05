@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 function relink() {
   if [[ -h "$1" ]]; then
     echo "Relinking $1"
@@ -13,11 +15,11 @@ function relink() {
 }
 
 cd ~
-relink .emacs ~/.dotfiles/.emacs
-relink .bash_profile ~/.dotfiles/.bash_profile
-#relink .gitconfig ~/.dotfiles/.git-config
-relink .emacs ~/.dotfiles/.emacs
-relink .gemrc ~/.dotfiles/.gemrc
-relink .hgrc ~/.dotfiles/.hgrc
-relink .irbrc ~/.dotfiles/.irbrc
-relink .vimrc ~/.dotfiles/.vimrc
+relink .emacs ~/.dotfiles/emacs
+relink .bash_profile ~/.dotfiles/bash_profile
+#relink .gitconfig ~/.dotfiles/git-config
+relink .emacs ~/.dotfiles/emacs
+relink .gemrc ~/.dotfiles/gemrc
+relink .hgrc ~/.dotfiles/hgrc
+relink .irbrc ~/.dotfiles/irbrc
+relink .vimrc ~/.dotfiles/vimrc

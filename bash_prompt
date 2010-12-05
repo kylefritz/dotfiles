@@ -1,3 +1,5 @@
+#! /usr/bin/env sh
+
 ## Custom prompt
 # Colors
        RED="\[\033[0;31m\]"
@@ -11,6 +13,7 @@
       CYAN="\[\033[1;36m\]"
      BROWN="\[\033[0;33m\]"
 COLOR_NONE="\[\033[0m\]"
+BACK_RED="\[\033[41m\]"
 
 LIGHTNING_BOLT="⚡"
       UP_ARROW="↑"
@@ -101,10 +104,10 @@ function set_prompt {
   fi
 
   #color ssh different
-  user_sufix="\u@\h ${COLOR_NONE}"
+  user_sufix="\u@\h${COLOR_NONE} "
   if [ -n "$SSH_CLIENT" ]
     then
-      user_prompt="${RED}ssh ${user_sufix}"
+      user_prompt="${BACK_RED}${WHITE}SSH ${user_sufix}"
     else
       user_prompt="${CYAN}${user_sufix}"
   fi
