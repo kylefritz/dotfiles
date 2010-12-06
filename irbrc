@@ -7,7 +7,7 @@ IRB.conf[:AUTO_INDENT] = true
 require 'bond'
 Bond.start
 
-require 'utility_belt'
+#require 'utility_belt'
 
 def vim
   edit_interactively :vim

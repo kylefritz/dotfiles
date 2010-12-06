@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 function relink() {
   if [[ -h "$1" ]]; then
@@ -16,7 +16,8 @@ function relink() {
 
 cd ~
 relink .emacs ~/.dotfiles/emacs
-relink .bash_profile ~/.dotfiles/bash_profile
+relink .bash_profile ~/.dotfiles/mac-bash_profile
+relink .bashrc ~/.dotfiles/ubuntu-bashrc
 #relink .gitconfig ~/.dotfiles/git-config
 relink .emacs ~/.dotfiles/emacs
 relink .gemrc ~/.dotfiles/gemrc
