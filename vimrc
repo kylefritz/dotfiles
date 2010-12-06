@@ -12,11 +12,16 @@ colorscheme desert
 set updatecount=0
 set nobackup
 set nowritebackup
-" set dir=~/tmp       " swap file storage directory
+set guioptions-=T  "remove toolbar
+
+"System paste
+map <C-V>   	"+gP
+vnoremap <C-C> "+y
+vnoremap <C-X> "+x
 
 set nowrap            "no text wrapping
 set selectmode=key    "shifted arrows for selection
-set nonu              "don't show line numbers
+set number              "show line numbers (nonumber for hide)
 set foldcolumn=0      "little space on the left.
 set tabstop=2
 set shiftwidth=2
@@ -26,9 +31,6 @@ set expandtab
 set smarttab
 set ww=<,>,[,],h,l    "wrap on movement keys
 let mapleader = ","
-
-"wordcomplete addin
-:autocmd BufEnter * call DoWordComplete() 
 
 " highlight searches, clear with spacebar
 set hlsearch
@@ -44,32 +46,14 @@ map <leader>cd :cd %:p:h<cr>
 " Always show status line
 set laststatus=2
 " Custom Status Line
-set statusline=%t%m\ cwd:\ %r%{CurDir()}%h%=col:%3v\ line:%4l\ of\ %L\ %p%%
-
-function! CurDir()
-  let curdir = substitute(getcwd(), '/home/adam/', "~/", "g")
-  return curdir
-endfunction
+"set statusline=%t%m\ cwd:\ %r%{CurDir()}%h%=col:%3v\ line:%4l\ of\ %L\ %p%%
 
 " Intuitive backspacing in insert mode
 set backspace=indent,eol,start
 
-" change buffer path to that of the current file
-" autocmd BufEnter * lcd %:p:h
-
 " highlight cursor line in INSERT mode.
 autocmd InsertLeave * se nocul
 autocmd InsertEnter * se cul
-
-"display tabs and trailing spaces
-"set list
-"set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
-
-"clean trailing spaces
-noremap <silent> <leader>v mv:%s/\s\+$//e<CR>:%s/\t/  /e<CR>`v
-
-"dont continue comments when pushing o/O
-set formatoptions-=o
 
 "some stuff to get the mouse going in term
 set mouse=a
@@ -92,6 +76,13 @@ set scrolloff=3
 let NERDTreeShowBookmarks=1
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
+"buffers in Vim = tabs for everyone else
+map <C-tab> :tabn<CR>
+map <S-C-tab> :tabp<CR>
+map <C-w> :x<CR> 
+
+"not saved!!
+
 " Tag List
 map <leader>t :TlistToggle<CR>
 
@@ -106,27 +97,10 @@ set wildignore+=**/generated/**,*.cache,bin-debug/**,deploy/**,*.swc,public/syst
 map <C-t> :CommandT<CR>
 map <leader>f :CommandTFlush<CR>
 
-" ZenCoding: http://mattn.github.com/zencoding-vim
-let g:user_zen_settings = {
-\  'indentation' : '  ',
-\  'perl' : {
-\    'aliases' : {
-\      'req' : 'require '
-\    },
-\    'snippets' : {
-\      'use' : "use strict\nuse warnings\n\n",
-\      'warn' : "warn \"|\";",
-\    }
-\  }
-\}
-let g:user_zen_leader_key = '<C-z>'
-let g:user_zen_expandabbr_key = '<C-e>'
-
-
 " Key Mappings
 " reload vimrc
 nmap ,s :source ~/.vimrc<CR>
-nmap ,g :source ~/.gvimrc<CR>
+
 " Tab and Shift-Tab indent and unindent
 inoremap <S-Tab> <esc>mp<<2h`pa
 noremap <Tab> >>
@@ -142,61 +116,29 @@ noremap <C-h> <C-w><C-h>
 noremap <C-j> <C-w><C-j>
 noremap <C-k> <C-w><C-k>
 noremap <C-l> <C-w><C-l>
-" Copy paste using system clipboard
-"vmap <C-y> "+y
-"vmap <C-u> "+p
-"nmap <C-u> "+p
-"imap <C-u> <esc>"+p
-"imap <C-v> <esc>pa
+
 " Home/end like emacs and bash
 nmap <C-e> $
 imap <C-e> <End>
-nmap <C-a> ggVG
-"nmap <C-a> 0
-"imap <C-a> <Home>
+nmap <C-a> ^
+imap <C-a> <Home>
+
+map <S-End> <esc>V<End>
+"nmap <S-End> V<End>
+
+
 " CTRL-S is Save
 noremap <C-s> :w<CR>
 inoremap <C-s> <esc>:w<CR>
+
 " ,bd to close buffer without changing window layout.
 nmap <leader>bd :Bclose<CR>
 imap <C-b>d <esc>:Bclose<CR>
 " select current definition
 nmap <leader>vm <esc>[mmd]MV'd
-" shift up / down moves the cursor
-vmap <S-up> <up>
-vmap <S-down> <down>
-nmap <S-up> V<up>
-nmap <S-down> V<down>
-nmap <S-right> v<right>
-nmap <S-left> v<left>
-inoremap <S-up> <esc>v<up>
-inoremap <S-down> <esc>v<down>
-inoremap <S-right> <esc>v<right>
-inoremap <S-left> <esc>v<left>
-" unmap shift-k
-vmap K <up>
-nmap K <up>
+
 " toggle numbers
 nmap <leader>n :set nonu!<CR>
-
-" hashrocket!
-imap hh =>
-
-" Load matchit (% to bounce from do to end, etc.)
-runtime! macros/matchit.vim
-
-"For screen.vim send block
-"to SendScreen function
-"(eg Scheme interpreter)
-"http://www.vim.org/scripts/script.php?script_id=2711
-vmap <C-c><C-c> :ScreenSend<CR>
-nmap <C-c><C-c> vip<C-c><C-c>
-
-map <leader>h <esc>:call ProjectionMode()<CR>
-function! ProjectionMode()
-  set gfn=Inconsolata\ 16
-  set laststatus=0
-endfunction
 
 map <leader>q <esc>:call WrapMode()<CR>
 function! WrapMode()
@@ -307,5 +249,3 @@ map <silent> <leader>r :if exists("b:rails_root")<CR>:Rlcd<CR>:endif<CR>
 " lcd to current file path
 map <silent> <leader>R :lcd %:p:h<CR>
 
-" Enable closetag macro all the time
-"source ~/.vim/macros/closetag.vim
