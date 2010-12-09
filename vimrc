@@ -27,6 +27,9 @@ set smarttab
 set ww=<,>,[,],h,l    "wrap on movement keys
 let mapleader = ","
 
+"wordcomplete addin
+:autocmd BufEnter * call DoWordComplete() 
+
 " highlight searches, clear with spacebar
 set hlsearch
 set hl=l:Visual

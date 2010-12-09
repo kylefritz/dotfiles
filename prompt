@@ -104,7 +104,7 @@ function set_prompt {
   fi
 
   #color ssh different
-  user_sufix="\u@\h${COLOR_NONE} "
+  user_sufix="\u@\h${COLOR_NONE}:"
   if [ -n "$SSH_CLIENT" ]
     then
       user_prompt="${BACK_RED}${WHITE}SSH ${user_sufix}"
