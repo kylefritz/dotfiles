@@ -18,12 +18,16 @@ set nobackup
 set nowritebackup
 " set dir=~/tmp       " swap file storage directory
 
+"window resizing
+nnoremap <leader>= :vertical resize+5<CR>
+nnoremap <leader>- :vertical resize-5<CR>
+
 " folding
 set mouse=a
 set smartcase
 set ignorecase
 set incsearch
-"ignore case when searching
+ignore case when searching
 
 "allow cusor to go all sort of palaces
 set virtualedit=all
@@ -62,7 +66,7 @@ set ww=<,>,[,],h,l    "wrap on movement keys
 let mapleader = ","
 
 "wordcomplete addin
-:autocmd BufEnter * call DoWordComplete() 
+":autocmd BufEnter * call DoWordComplete() 
 
 " highlight searches, clear with spacebar
 set hlsearch
