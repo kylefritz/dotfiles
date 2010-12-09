@@ -8,15 +8,49 @@ set hidden    "allow hiding buffers without save
 
 colorscheme desert
 
+"hide toolbar
+:set guioptions-=T
+:set guifont=Monaco:h13
+
 " don't leave backup files scattered about.
 set updatecount=0
 set nobackup
 set nowritebackup
 " set dir=~/tmp       " swap file storage directory
 
+" folding
+set mouse=a
+set smartcase
+set ignorecase
+set incsearch
+"ignore case when searching
+
+"allow cusor to go all sort of palaces
+set virtualedit=all
+
+"easier saves
+noremap <leader>w :w<CR>
+
+"jump out of insert mode with jj
+inoremap jj <Esc>
+noremap <BS> i<BS>
+
+"better keyboard movement in normal mode
+"imap <C-h> <left>
+"imap <C-j> <up>
+"imap <C-k> <down>
+"imap <C-l> <right>
+
+"inoremap <C-P> <Esc>pi
+
+"kill and copy end of lines faster
+noremap D d$
+noremap Y y$
+
+
 set nowrap            "no text wrapping
 set selectmode=key    "shifted arrows for selection
-set nonu              "don't show line numbers
+set number              "don't show line numbers
 set foldcolumn=0      "little space on the left.
 set tabstop=2
 set shiftwidth=2
@@ -47,7 +81,7 @@ set laststatus=2
 set statusline=%t%m\ cwd:\ %r%{CurDir()}%h%=col:%3v\ line:%4l\ of\ %L\ %p%%
 
 function! CurDir()
-  let curdir = substitute(getcwd(), '/home/adam/', "~/", "g")
+  let curdir = substitute(getcwd(), '/home/kyle/', "~/", "g")
   return curdir
 endfunction
 
@@ -123,6 +157,21 @@ let g:user_zen_leader_key = '<C-z>'
 let g:user_zen_expandabbr_key = '<C-e>'
 
 
+" tabs
+" for linux and windows users (using the control key)
+map <C-S-]> gt
+map <C-S-[> gT
+map <C-1> 1gt
+map <C-2> 2gt
+map <C-3> 3gt
+map <C-4> 4gt
+map <C-5> 5gt
+map <C-6> 6gt
+map <C-7> 7gt
+map <C-8> 8gt
+map <C-9> 9gt
+map <C-0> :tablast<CR>
+
 " Key Mappings
 " reload vimrc
 nmap ,s :source ~/.vimrc<CR>
@@ -149,11 +198,10 @@ noremap <C-l> <C-w><C-l>
 "imap <C-u> <esc>"+p
 "imap <C-v> <esc>pa
 " Home/end like emacs and bash
-nmap <C-e> $
-imap <C-e> <End>
-nmap <C-a> ggVG
-"nmap <C-a> 0
-"imap <C-a> <Home>
+noremap <C-e> <End>
+noremap <C-a> <Home>
+
+
 " CTRL-S is Save
 noremap <C-s> :w<CR>
 inoremap <C-s> <esc>:w<CR>
