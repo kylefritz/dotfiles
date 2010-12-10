@@ -10,7 +10,7 @@ colorscheme desert
 
 "hide toolbar
 :set guioptions-=T
-:set guifont=Monaco:h13
+":set guifont=Monaco:h13
 
 " don't leave backup files scattered about.
 set updatecount=0
@@ -32,7 +32,7 @@ set mouse=a
 set smartcase
 set ignorecase
 set incsearch
-ignore case when searching
+"ignore case when searching
 
 "allow cusor to go all sort of palaces
 set virtualedit=all
