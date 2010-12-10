@@ -14,14 +14,8 @@ PATH+=:/usr/texbin
 PATH+=:/usr/X11/bin
 PATH+=:/opt/local/bin
 
-#prompt
-#somewhere PS1 is defined as '\h:\W \u\$ '
-export PS1="\h:\W$ "
-color_prompt=yes
-
 #editor
 export EDITOR=vim
-#"mate -w"
 alias edit=$EDITOR
 
 #general shell
@@ -50,7 +44,7 @@ alias si='svn propedit svn:ignore'
 #alias x='svn rm'
 
 #ruby
-alias gem='sudo gem'
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
 
 #ssh aliases
 source ~/.ssh_aliases
@@ -60,7 +54,7 @@ alias firefox='open -a /Applications/Firefox.app/'
 
 #ls colors
 export CLICOLOR=1
-export LSCOLORS="exbxxexcbxxfxgdxAxExGx"
+export LSCOLORS="CxExCgDxbxeggebhbhhchc"
 
 #trash function
 function trash () {

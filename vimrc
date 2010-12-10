@@ -8,6 +8,10 @@ set hidden    "allow hiding buffers without save
 
 colorscheme desert
 
+"hide toolbar
+:set guioptions-=T
+:set guifont=Monaco:h13
+
 " don't leave backup files scattered about.
 set updatecount=0
 set nobackup
@@ -18,6 +22,35 @@ set guioptions-=T  "remove toolbar
 map <C-V>   	"+gP
 vnoremap <C-C> "+y
 vnoremap <C-X> "+x
+
+"window resizing
+nnoremap <leader>= :vertical resize+5<CR>
+nnoremap <leader>- :vertical resize-5<CR>
+
+" folding
+set mouse=a
+set smartcase
+set ignorecase
+set incsearch
+ignore case when searching
+
+"allow cusor to go all sort of palaces
+set virtualedit=all
+
+"easier saves
+noremap <leader>w :w<CR>
+
+"jump out of insert mode with jj
+inoremap jj <Esc>
+noremap <BS> i<BS>
+
+
+"inoremap <C-P> <Esc>pi
+
+"kill and copy end of lines faster
+noremap D d$
+noremap Y y$
+
 
 set nowrap            "no text wrapping
 set selectmode=key    "shifted arrows for selection
@@ -46,7 +79,12 @@ map <leader>cd :cd %:p:h<cr>
 " Always show status line
 set laststatus=2
 " Custom Status Line
-"set statusline=%t%m\ cwd:\ %r%{CurDir()}%h%=col:%3v\ line:%4l\ of\ %L\ %p%%
+set statusline=%t%m\ cwd:\ %r%{CurDir()}%h%=col:%3v\ line:%4l\ of\ %L\ %p%%
+
+function! CurDir()
+  let curdir = substitute(getcwd(), '/home/kyle/', "~/", "g")
+  return curdir
+endfunction
 
 " Intuitive backspacing in insert mode
 set backspace=indent,eol,start
@@ -123,8 +161,8 @@ imap <C-e> <End>
 nmap <C-a> ^
 imap <C-a> <Home>
 
-map <S-End> <esc>V<End>
-"nmap <S-End> V<End>
+noremap <C-e> <End>
+noremap <C-a> <Home>
 
 
 " CTRL-S is Save
