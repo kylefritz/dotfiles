@@ -9,33 +9,24 @@ set hidden    "allow hiding buffers without save
 colorscheme desert
 
 "hide toolbar
-:set guioptions-=T
-":set guifont=Monaco:h13
+set guioptions-=T
 
 " don't leave backup files scattered about.
 set updatecount=0
 set nobackup
 set nowritebackup
-set guioptions-=T  "remove toolbar
-
-"System paste
-map <C-V>   	"+gP
-vnoremap <C-C> "+y
-vnoremap <C-X> "+x
 
 "window resizing
 nnoremap <leader>= :vertical resize+5<CR>
 nnoremap <leader>- :vertical resize-5<CR>
 
-" folding
-set mouse=a
+"ignore case when searching
 set smartcase
 set ignorecase
 set incsearch
-"ignore case when searching
 
 "allow cusor to go all sort of palaces
-set virtualedit=all
+"set virtualedit=all
 
 "easier saves
 noremap <leader>w :w<CR>
@@ -45,17 +36,13 @@ inoremap jj <Esc>
 noremap <BS> i<BS>
 
 
-"inoremap <C-P> <Esc>pi
-
 "kill and copy end of lines faster
 noremap D d$
 noremap Y y$
 
-
 set nowrap            "no text wrapping
 set selectmode=key    "shifted arrows for selection
 set number              "show line numbers (nonumber for hide)
-set foldcolumn=0      "little space on the left.
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -72,6 +59,9 @@ nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " Fast editing of the .vimrc
 map <leader>e :e! ~/.vimrc<cr>
+
+" reload vimrc
+nmap ,s :source ~/.vimrc<CR>   
 
 " When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
@@ -94,8 +84,8 @@ autocmd InsertLeave * se nocul
 autocmd InsertEnter * se cul
 
 "some stuff to get the mouse going in term
-set mouse=a
-set ttymouse=xterm2
+"set mouse=a
+"set ttymouse=xterm2
 
 "tell the term has 256 colors
 set t_Co=256
@@ -114,13 +104,6 @@ set scrolloff=3
 let NERDTreeShowBookmarks=1
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
-"buffers in Vim = tabs for everyone else
-map <C-tab> :tabn<CR>
-map <S-C-tab> :tabp<CR>
-map <C-w> :x<CR> 
-
-"not saved!!
-
 " Tag List
 map <leader>t :TlistToggle<CR>
 
@@ -135,9 +118,7 @@ set wildignore+=**/generated/**,*.cache,bin-debug/**,deploy/**,*.swc,public/syst
 map <C-t> :CommandT<CR>
 map <leader>f :CommandTFlush<CR>
 
-" Key Mappings
-" reload vimrc
-nmap ,s :source ~/.vimrc<CR>
+
 
 " Tab and Shift-Tab indent and unindent
 inoremap <S-Tab> <esc>mp<<2h`pa
