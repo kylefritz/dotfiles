@@ -1,0 +1,31 @@
+# personalize these with your own name and email address
+git config --global user.name "Kyle Fritz"
+git config --global user.email "kyle.p.fritz@gmail.com"
+
+# decorate logs
+git config --global log.decorate short
+
+# colorize output 
+git config --global color.ui auto
+git config --global color.interactive auto
+
+# user-friendly paging of some commands which don't use the pager by default
+# (other commands like "git log" already do)
+# to override pass --no-pager or GIT_PAGER=cat
+git config --global pager.status true
+git config --global pager.show-branch true
+
+# shortcut aliases
+git config --global alias.st status
+git config --global alias.ci commit
+git config --global alias.co checkout
+git config --global alias.br branch
+
+# this is useful when you use topic branches for grouping together logically related changes
+git config --global format.numbered auto
+
+# show difference between the HEAD and the index
+git config --global alias.staged "diff --cached"
+
+# show difference between working tree and the index; seeing as this is just a synonym for "diff" I almost never use it
+git config --global alias.unstaged diff
