@@ -16,8 +16,8 @@ function relink() {
 
 cd ~
 relink .emacs ~/.dotfiles/emacs
-relink .bash_profile ~/.dotfiles/mac-bash_profile
-relink .bashrc ~/.dotfiles/ubuntu-bashrc
+relink .bash_profile ~/.dotfiles/bash_profile
+relink .bashrc ~/.dotfiles/bashrc
 #relink .gitconfig ~/.dotfiles/git-config
 relink .emacs ~/.dotfiles/emacs
 relink .gemrc ~/.dotfiles/gemrc
@@ -25,3 +25,4 @@ relink .hgrc ~/.dotfiles/hgrc
 relink .irbrc ~/.dotfiles/irbrc
 relink .vimrc ~/.dotfiles/vimrc
 relink .vim ~/.dotfiles/vim
+relink .bash_aliases ~/.dotfiles/bash_aliases

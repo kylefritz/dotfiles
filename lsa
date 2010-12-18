@@ -1,0 +1,9 @@
+#!/usr/bin/env python
+
+f=file('/Users/kf/.bash_profile','r')
+lines=f.readlines()
+f.close()
+
+for line in lines:
+    if line.startswith('alias'):
+        print line[:-1]

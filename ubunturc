@@ -1,0 +1,5 @@
+#ubuntu specific stuff
+
+#mimic mac open
+alias open="nautilus"
+

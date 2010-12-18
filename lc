@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+
+from __future__ import with_statement
+import os
+
+
+def countlines():
+	"""count the number of lines in the current directory and all child directories"""
+	pwd=os.getcwd()
+	queue=[pwd]
+	linecount=0
+	
+	extensionsToCount=['java','py','c','cpp','cs']
+	
+	while queue:
+		directory=queue.pop()
+		contents=os.listdir(directory)
+		for item in contents:
+			fullpath=os.path.join(directory, item)
+			if not os.path.isfile(fullpath):
+				queue.append(fullpath)
+			else:
+				ext=fullpath.split('.')[-1]
+				if ext in extensionsToCount:
+					with open(fullpath) as f:
+						linecount+=len(f.readlines())
+	return linecount
+
+print "%d lines"%countlines()
