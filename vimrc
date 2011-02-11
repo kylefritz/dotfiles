@@ -31,6 +31,10 @@ imap <C-v> <esc>pa
 "easier saves
 noremap <leader>w :w<CR>
 
+"command-t
+"inoremap <leader>t :CommandT<CR>
+"noremap <leader>t :CommandT<CR>
+
 "jump out of insert mode with jj
 inoremap jj <Esc>
 
@@ -101,13 +105,16 @@ set scrolloff=3
 let NERDTreeShowBookmarks=1
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
+" BufExplorer
+"let g:bufExplorerSortBy='number'
+
 " Command-T (supercedes FuzzyFinderTextMate)
-let g:CommandTMaxHeight=20
-let g:CommandTScanDotDirectories=0
+"let g:CommandTMaxHeight=20
+"let g:CommandTScanDotDirectories=0
 set wildignore+=*.log,*.o,*.sassc,*.png,*.jpg,*.db,*.gif,*.jpeg,*.swf,*.class,*.scssc,*.pdf,public/richter_data/*.xml
 set wildignore+=**/generated/**,*.cache,bin-debug/**,deploy/**,*.swc,public/system/**
 map <C-t> :CommandT<CR>
-map <leader>f :CommandTFlush<CR>
+"map <leader>f :CommandTFlush<CR>
 
 " Tab and Shift-Tab indent and unindent
 inoremap <S-Tab> <esc>mp<<2h`pa
