@@ -1,7 +1,3 @@
-# personalize these with your own name and email address
-git config --global user.name "Kyle Fritz"
-git config --global user.email "kyle.p.fritz@gmail.com"
-
 # decorate logs
 git config --global log.decorate short
 

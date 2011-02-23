@@ -14,7 +14,6 @@ alias emcas=emacs
 alias up='cd ..'
 alias clean='rm -f *~ *.out *.o *.pyc *.class *.gch'
 alias clever=$EDITOR' ~/.bashrc;source ~/.bashrc'
-alias hints="ls ~/.kpfscripts"
 alias si='svn propedit svn:ignore'
 alias bm="pushd ."
 alias b="cd --"

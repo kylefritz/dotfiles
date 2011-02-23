@@ -27,9 +27,12 @@ relink .ackrc ~/.dotfiles/ackrc
 relink .vim ~/.dotfiles/vim
 relink .bash_aliases ~/.dotfiles/bash_aliases
 
-read -p "include git aliases/setttings (Y/n)?" yn
+#include git aliases
+source ~/.dotfiles/gitinit
+
+read -p "include kyle's git setttings (Y/n)?" yn
 case $yn in
   [Nn]*) ;;
-  * ) source ~/.dotfiles/gitinit;; 
+  * ) source ~/.dotfiles/gitkpf;; 
 esac
 
