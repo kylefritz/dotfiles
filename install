@@ -23,6 +23,7 @@ relink .gemrc ~/.dotfiles/gemrc
 relink .hgrc ~/.dotfiles/hgrc
 relink .irbrc ~/.dotfiles/irbrc
 relink .vimrc ~/.dotfiles/vimrc
+relink .ackrc ~/.dotfiles/ackrc
 relink .vim ~/.dotfiles/vim
 relink .bash_aliases ~/.dotfiles/bash_aliases
 
