@@ -19,7 +19,6 @@ relink .emacs ~/.dotfiles/emacs
 relink .bash_profile ~/.dotfiles/bash_profile
 relink .bashrc ~/.dotfiles/bashrc
 #relink .gitconfig ~/.dotfiles/git-config
-relink .emacs ~/.dotfiles/emacs
 relink .gemrc ~/.dotfiles/gemrc
 relink .hgrc ~/.dotfiles/hgrc
 relink .irbrc ~/.dotfiles/irbrc
