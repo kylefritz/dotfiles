@@ -28,7 +28,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 #local path
-if [ -f ~/.path]; then
+if [ -f ~/.path ]; then
     . ~/.path
 fi
 
