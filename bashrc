@@ -27,6 +27,10 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+#local path
+if [ -f ~/.path]; then
+    . ~/.path
+fi
 
 #ssh aliases
 if [ -f ~/.ssh_aliases ]; then
