@@ -27,7 +27,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-
 #ssh aliases
 if [ -f ~/.ssh_aliases ]; then
     . ~/.ssh_aliases
@@ -45,6 +44,11 @@ PATH+=:/usr/sbin
 PATH+=:/usr/local/lib/
 PATH+=:/usr/local/include/
 
+#local path
+if [ -f ~/.path ]; then
+  . ~/.path
+fi
+
 #editor
 export EDITOR=vim
 
@@ -60,7 +64,6 @@ if [ $(uname) = "Darwin" ]; then
 else
   . ~/.dotfiles/ubunturc
 fi
-
 
 #pull in prompt
 . ~/.dotfiles/prompt
