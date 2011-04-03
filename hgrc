@@ -3,6 +3,3 @@
 username = kpf <kyle.p.fritz@gmail.com>
 # editor="mate -w"
 
-[extensions]
-localbranch = /Users/kf/.hgext/localbranch/localbranch.py
-hgshelve=/Users/kf/.hgext/hgshelve/hgshelve.py

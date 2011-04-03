@@ -10,6 +10,9 @@ colorscheme desert
 "hide toolbar
 set guioptions-=T
 
+"gui font
+set gfn=Monospace\ 17
+
 " don't leave backup files scattered about.
 set updatecount=0
 set nobackup
@@ -18,6 +21,8 @@ set nowritebackup
 "window resizing
 noremap <leader>= :resize +5<CR>
 noremap <leader>- :resize -5<CR>
+
+noremap <leader>p :lcd %:p:h
 
 "ignore case when searching
 set smartcase
@@ -32,8 +37,8 @@ imap <C-v> <esc>pa
 noremap <leader>w :w<CR>
 
 "command-t
-"inoremap <leader>t :CommandT<CR>
-"noremap <leader>t :CommandT<CR>
+inoremap <leader>t :CommandT<CR>
+noremap <leader>t :CommandT<CR>
 
 "jump out of insert mode with jj
 inoremap jj <Esc>
@@ -133,6 +138,20 @@ noremap <C-j> <C-w><C-j>
 noremap <C-k> <C-w><C-k>
 noremap <C-l> <C-w><C-l>
 
+" Copy paste using system clipboard
+vmap <C-y> "+y
+vmap <C-x> "+x
+"vmap <C-u> "+p
+"nmap <C-b> "+p
+"imap <C-v> <esc>"+p
+"imap <C-u> <esc>pa
+" shift paste=paste
+vmap <C-Y> "+y
+vmap <C-X> "+x
+"vmap <C-V> "+p
+"nmap <C-V> "+p
+"imap <C-V> <esc>"+p
+
 " Home/end like emacs and bash
 nmap <C-e> $
 imap <C-e> <End>
@@ -160,6 +179,9 @@ map <leader>_ :s/^\/\/\\|^--\\|^> \\|^[#"%!;]//<CR>:nohlsearch<CR>
 
 " json is javascript
 autocmd BufNewFile,BufReadPost,BufEnter *.json set filetype=javascript
+
+" god is ruby (hm.. that's a little bit of an over statement)
+autocmd BufNewFile,BufReadPost,BufEnter *.god set filetype=ruby
 
 " lcd to current rails project root
 map <silent> <leader>r :if exists("b:rails_root")<CR>:Rlcd<CR>:endif<CR>
