@@ -1,0 +1,44 @@
+map <C-e> $
+imap <C-e> <End>
+nmap <C-a> ^
+imap <C-a> <Home>
+noremap <C-e> <End>
+noremap <C-a> <Home>
+
+" Always show status line
+set laststatus=2
+" Custom Status Line
+set statusline=%t%m\ cwd:\ %r%{CurDir()}%h%=col:%3v\ line:%4l\ of\ %L\ %p%%
+
+function! CurDir()
+  let curdir = substitute(getcwd(), '/home/(kyle|kpf|kf)/', "~/", "g")
+  return curdir
+endfunction
+
+" json is javascript
+autocmd BufNewFile,BufReadPost,BufEnter *.json set filetype=javascript
+
+" god is ruby (hm.. that's a little bit of an over statement)
+autocmd BufNewFile,BufReadPost,BufEnter *.god set filetype=ruby
+
+" lcd to current rails project root
+map <silent> <leader>r :if exists("b:rails_root")<CR>:Rlcd<CR>:endif<CR>
+
+" lcd to current file path
+map <silent> <leader>R :lcd %:p:h<CR>
+"
+"ignore case when searching
+set smartcase
+set ignorecase
+set incsearch
+
+" highlight searches, clear with spacebar
+set hlsearch
+set hl=l:Visual
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+
+" Fast editing of the .vimrc
+map <leader>e :e! ~/.vimrc.local<cr>
+
+" reload vimrc
+nmap <leader>s :source ~/.vimrc<CR> 

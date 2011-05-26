@@ -27,11 +27,18 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+#aws
+if [ -f ~/.aws ]; then
+    . ~/.aws
+fi
+
 #ssh aliases
 if [ -f ~/.ssh_aliases ]; then
     . ~/.ssh_aliases
 fi
 
+#include ssh identities
+ssh-add > /dev/null
 
 #path
 export PATH= #clear, then add
@@ -58,7 +65,13 @@ export EDITOR=vim
 #python
 export PYTHONSTART=~/.dotfiles/pythonstart.py
 
-#pull in ubunut or mac specific stuff
+#node
+export NODE_PATH=/usr/local/lib/node
+
+#vim
+alias v="gvim --remote-silent"
+
+#pull in ubuntu or mac specific stuff
 if [ $(uname) = "Darwin" ]; then
   . ~/.dotfiles/macrc
 else
