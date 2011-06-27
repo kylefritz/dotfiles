@@ -32,6 +32,9 @@ set smartcase
 set ignorecase
 set incsearch
 
+"sudo edit
+cmap w!! %!sudo tee > /dev/null %
+
 " highlight searches, clear with spacebar
 set hlsearch
 set hl=l:Visual
@@ -42,3 +45,14 @@ map <leader>e :e! ~/.vimrc.local<cr>
 
 " reload vimrc
 nmap <leader>s :source ~/.vimrc<CR> 
+
+
+"some reminders:
+"   vi" -> select all inside quotes
+"   va" -> select all includeing quotes
+"   works just as well with ()''{}[]<>
+"   as well as using c,d or y instead of v
+"
+"   * -> search for all occurances for the word under the cursor
+"   gg=G`` -> format file, return to where you were
+"   d% -> delete a complex call expression like someth.ing.other(1,2,'5', lkja) while keeping this
