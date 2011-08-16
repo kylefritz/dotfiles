@@ -2,4 +2,4 @@ set background=dark
 colorscheme solarized
 
 set guifont=Menlo:h14
-
+set selectmode=""

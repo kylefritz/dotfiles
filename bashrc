@@ -37,19 +37,17 @@ if [ -f ~/.ssh_aliases ]; then
     . ~/.ssh_aliases
 fi
 
-#include ssh identities
-ssh-add > /dev/null
-
 #path
 export PATH= #clear, then add
-PATH+=:~/.dotfiles/
+PATH+=:~/.dotfiles
+PATH+=:~/bin
 PATH+=:/usr/local/bin
 PATH+=:/bin
 PATH+=:/sbin
 PATH+=:/usr/bin
 PATH+=:/usr/sbin
-PATH+=:/usr/local/lib/
-PATH+=:/usr/local/include/
+PATH+=:/usr/local/lib
+PATH+=:/usr/local/include
 
 #local path
 if [ -f ~/.path ]; then
@@ -67,6 +65,9 @@ export PYTHONSTART=~/.dotfiles/pythonstart.py
 
 #node
 export NODE_PATH=/usr/local/lib/node
+
+#scala
+PATH+=:/usr/local/typesafe-stack/bin
 
 #vim
 alias v="gvim --remote-silent"
