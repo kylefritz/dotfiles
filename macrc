@@ -13,6 +13,13 @@ export LSCOLORS="CxExCgDxbxeggebhbhhchc"
 #mvim
 alias gvim=mvim
 
+#hub
+hubPath=$(which hub)
+if [ "$hubPath" ]
+then
+  alias git=hub
+fi
+
 #trash function
 function trash () {
   local path

@@ -10,7 +10,9 @@ function relink() {
     echo "Linking $1"
     ln -sn "$2" "$1"
   else
-    echo "$1 exists as a real file, skipping."
+    echo "$1 exists as a real file, moving."
+    mv "$1" "$1.backup"
+    ln -sn "$2" "$1"
   fi
 }
 
