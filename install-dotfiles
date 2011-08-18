@@ -31,7 +31,7 @@ relink .bash_aliases ~/.dotfiles/bash_aliases
 #include git aliases
 source ~/.dotfiles/gitinit
 
-read -p "include kyle's git setttings (Y/n)?" yn
+read -p "include kyle's git setttings (Y/n: will only confuse you if you're not kyle)?" yn
 case $yn in
   [Nn]*) ;;
   * ) source ~/.dotfiles/gitkpf;; 
