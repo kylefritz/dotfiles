@@ -10,7 +10,9 @@ function relink() {
     echo "Linking $1"
     ln -sn "$2" "$1"
   else
-    echo "$1 exists as a real file, skipping."
+    echo "$1 exists as a real file, moving."
+    mv "$1" "$1.backup"
+    ln -sn "$2" "$1"
   fi
 }
 
@@ -29,7 +31,7 @@ relink .bash_aliases ~/.dotfiles/bash_aliases
 #include git aliases
 source ~/.dotfiles/gitinit
 
-read -p "include kyle's git setttings (Y/n)?" yn
+read -p "include kyle's git setttings (Y/n: will only confuse you if you're not kyle)?" yn
 case $yn in
   [Nn]*) ;;
   * ) source ~/.dotfiles/gitkpf;; 
