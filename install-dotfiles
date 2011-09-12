@@ -17,16 +17,22 @@ function relink() {
 }
 
 cd ~
-relink .bash_profile ~/.dotfiles/bash_profile
-relink .bashrc ~/.dotfiles/bashrc
-#relink .gitconfig ~/.dotfiles/git-config
 relink .gemrc ~/.dotfiles/gemrc
 relink .hgrc ~/.dotfiles/hgrc
 relink .irbrc ~/.dotfiles/irbrc
 relink .vimrc.local ~/.dotfiles/vimrc.local
 relink .gvimrc.local ~/.dotfiles/gvimrc.local
 relink .ackrc ~/.dotfiles/ackrc
+
+#zsh
+relink .zshrc ~/.dotfiles/zschrc
+relink .oh-my-zsh/themes/kylefritz.zsh-theme ~/.dotfiles/kylefritz.zsh-theme
+
+#bash
+relink .bash_profile ~/.dotfiles/bash_profile
+relink .bashrc ~/.dotfiles/bashrc
 relink .bash_aliases ~/.dotfiles/bash_aliases
+
 
 #include git aliases
 source ~/.dotfiles/gitinit
