@@ -25,7 +25,7 @@ relink .gvimrc.local ~/.dotfiles/gvimrc.local
 relink .ackrc ~/.dotfiles/ackrc
 
 #zsh
-relink .zshrc ~/.dotfiles/zschrc
+relink .zshrc ~/.dotfiles/zshrc
 relink .oh-my-zsh/themes/kylefritz.zsh-theme ~/.dotfiles/kylefritz.zsh-theme
 
 #bash

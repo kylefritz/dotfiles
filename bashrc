@@ -19,28 +19,28 @@ shopt -s checkwinsize
 
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # enable programmable completion features 
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+  . /etc/bash_completion
 fi
 
 #aws
 if [ -f ~/.aws ]; then
-    . ~/.aws
+  . ~/.aws
 fi
 
 #ssh aliases
 if [ -f ~/.ssh_aliases ]; then
-    . ~/.ssh_aliases
+  . ~/.ssh_aliases
 fi
 
 #path
 export PATH= #clear, then add
 PATH+=:~/.dotfiles
-PATH+=:~/bin
+PATH+=:~/local/bin
 PATH+=:/usr/local/bin
 PATH+=:/bin
 PATH+=:/sbin
@@ -81,3 +81,15 @@ fi
 
 #pull in prompt
 . ~/.dotfiles/prompt
+
+_memegen()
+{
+  local curw
+  COMPREPLY=()
+  curw=${COMP_WORDS[COMP_CWORD]}
+  COMPREPLY=($(compgen -W '$(echo "" | memegen --list)' -- $curw))
+  return 0
+}
+complete -F _memegen -o dirnames memegen
+
+
