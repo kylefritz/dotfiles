@@ -10,26 +10,34 @@ function relink() {
     echo "Linking $1"
     ln -sn "$2" "$1"
   else
-    echo "$1 exists as a real file, skipping."
+    echo "$1 exists as a real file, moving."
+    mv "$1" "$1.backup"
+    ln -sn "$2" "$1"
   fi
 }
 
 cd ~
-relink .bash_profile ~/.dotfiles/bash_profile
-relink .bashrc ~/.dotfiles/bashrc
-#relink .gitconfig ~/.dotfiles/git-config
 relink .gemrc ~/.dotfiles/gemrc
 relink .hgrc ~/.dotfiles/hgrc
 relink .irbrc ~/.dotfiles/irbrc
 relink .vimrc.after ~/.dotfiles/vimrc.after
 relink .gvimrc.after ~/.dotfiles/gvimrc.after
 relink .ackrc ~/.dotfiles/ackrc
+
+#zsh
+relink .zshrc ~/.dotfiles/zshrc
+relink .oh-my-zsh/themes/kylefritz.zsh-theme ~/.dotfiles/kylefritz.zsh-theme
+
+#bash
+relink .bash_profile ~/.dotfiles/bash_profile
+relink .bashrc ~/.dotfiles/bashrc
 relink .bash_aliases ~/.dotfiles/bash_aliases
+
 
 #include git aliases
 source ~/.dotfiles/gitinit
 
-read -p "include kyle's git setttings (Y/n)?" yn
+read -p "include kyle's git setttings (Y/n: will only confuse you if you're not kyle)?" yn
 case $yn in
   [Nn]*) ;;
   * ) source ~/.dotfiles/gitkpf;; 
