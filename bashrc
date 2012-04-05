@@ -37,9 +37,6 @@ if [ -f ~/.ssh_aliases ]; then
     . ~/.ssh_aliases
 fi
 
-#include ssh identities
-ssh-add > /dev/null
-
 #path
 export PATH= #clear, then add
 PATH+=:~/.dotfiles/
@@ -80,3 +77,5 @@ fi
 
 #pull in prompt
 . ~/.dotfiles/prompt
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
