@@ -15,7 +15,8 @@ git config --global pager.show-branch true
 git config --global alias.st status
 git config --global alias.ci commit
 git config --global alias.co checkout
-git config --global alias.br branch
+git config --global alias.br branch --verbose --abbrev=6
+git config --global alias.logp log --format='format:%C(yellow)%h %Cblue%>(12)%ar: %Cgreen%<(7)%aN%Cred%d %Creset%s'
 git config --global alias.conflicts "diff --name-only --diff-filter=U"
 git config --global alias.ignored "!git ls-files -v | grep \"^[[:lower:]]\""
 git config --global alias.ignore update-index --assume-unchanged
