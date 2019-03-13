@@ -12,7 +12,6 @@ git config --global pager.status true
 git config --global pager.show-branch true
 
 # shortcut aliases
-git config --global alias.st status
 git config --global alias.ci commit
 git config --global alias.co checkout
 git config --global alias.br branch --verbose --abbrev=6
@@ -21,6 +20,7 @@ git config --global alias.conflicts "diff --name-only --diff-filter=U"
 git config --global alias.ignored "!git ls-files -v | grep \"^[[:lower:]]\""
 git config --global alias.ignore update-index --assume-unchanged
 git config --global alias.unignore update-index --no-assume-unchanged
+git config --global alias.st '!git status && git ignored'
 
 # this is useful when you use topic branches for grouping together logically related changes
 git config --global format.numbered auto
