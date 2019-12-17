@@ -24,6 +24,9 @@ git config --global alias.st '!git status && git ignored'
 git config --global alias.sts '!git status && git ignored' # common mistype
 git config --global alias.tst '!git status && git ignored' # common mistype
 
+# simplify pushing branches to github: https://dev.to/michalbryxi/simplify-pushing-to-git-32g6
+git config --global push.default current
+
 # this is useful when you use topic branches for grouping together logically related changes
 git config --global format.numbered auto
 
