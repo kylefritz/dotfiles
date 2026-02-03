@@ -1,0 +1,44 @@
+#[custom.aws_auth]
+#command = "echo '🚫 AWS'"
+#when = "test $(is_aws_auth_expired > /dev/null; echo $status) -ne 0"
+#format = "[$output]($style) "
+#style = "red bold"
+
+#[custom.okta_auth]
+#command = "echo '🚫 okta jwt'"
+#when = "test $(is_okta_jwt_expired > /dev/null; echo $status) -ne 0"
+#format = "[$output]($style) "
+#style = "red bold"
+
+[buf]
+disabled = true
+
+[golang]
+disabled = true
+
+# Git configuration with different colors for local and tracking branches
+[git_branch]
+format = "[$symbol$branch](bold purple)[:$remote_branch](bold green) "
+symbol = " "
+
+#[git_status]
+#style = "bold blue"
+
+#[git_metrics]
+#disabled = false
+
+# Disable username and hostname in normal cases
+[username]
+disabled = true
+
+[hostname]
+disabled = true
+
+# Only show username@hostname when in SSH
+[env_var.SSH_CONNECTION]
+format = '[$user@$hostname]($style) '
+style = "bold blue"
+
+# Disable Python version display
+[python]
+disabled = true
