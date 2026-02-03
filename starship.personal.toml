@@ -1,0 +1,73 @@
+# ============================================================================
+# Custom Modules
+# ============================================================================
+#
+# [custom.jj_auto_init]
+# Automatically initializes Jujutsu (jj) in git repositories and worktrees.
+# - Runs silently on every prompt in git repos
+# - Enables fast `jj status` commands (much faster than git status)
+# - Each worktree needs its own .jj/ directory (handled automatically)
+# - Script: ~/.local/bin/jj-init-worktree.sh
+# - More info: https://github.com/jj-vcs/jj
+#
+# ============================================================================
+
+[custom.jj_auto_init]
+command = "$HOME/.local/bin/jj-init-worktree.sh"
+when = "test -d .git -o -f .git"
+format = ""
+
+[buf]
+disabled = true
+
+[golang]
+disabled = true
+
+# Git configuration with different colors for local and tracking branches
+[git_branch]
+format = "[$symbol$branch](bold purple)[:$remote_branch](bold green) "
+symbol = " "
+
+[git_status]
+disabled = true
+
+#[git_metrics]
+#disabled = false
+
+# Disable username and hostname
+[username]
+disabled = true
+
+[hostname]
+disabled = true
+
+# Disable Python version display
+[python]
+disabled = true
+
+# Show command duration for slow commands
+[cmd_duration]
+min_time = 2000  # Only show if command takes >2s
+format = "took [$duration]($style) "
+
+# Visual feedback for command success/failure
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+# Keep directory path manageable
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+
+# Show background jobs
+[jobs]
+symbol = "✦"
+number_threshold = 1
+
+# Display current time
+# [time]
+# disabled = false
+# format = "[$time]($style) "
+# time_format = "%H:%M"
+# style = "dimmed white"

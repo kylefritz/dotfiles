@@ -9,9 +9,9 @@ def countlines():
 	pwd=os.getcwd()
 	queue=[pwd]
 	linecount=0
-	
+
 	extensionsToCount=['java','py','c','cpp','cs']
-	
+
 	while queue:
 		directory=queue.pop()
 		contents=os.listdir(directory)
