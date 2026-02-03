@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-# Install personal dotfiles configuration
-# This script sets up starship prompt for personal use
+# Install work dotfiles configuration
+# This script sets up starship prompt with work-specific modules
 
 set -e
 
 # Determine starship config directory
 STARSHIP_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 
-echo "Installing personal dotfiles..."
+echo "Installing work dotfiles..."
 
 # Create starship config directory if it doesn't exist
 mkdir -p "$STARSHIP_CONFIG_DIR"
@@ -17,18 +17,19 @@ mkdir -p "$STARSHIP_CONFIG_DIR"
 if [[ -h "$STARSHIP_CONFIG_DIR/starship.toml" ]]; then
   echo "Relinking $STARSHIP_CONFIG_DIR/starship.toml"
   rm "$STARSHIP_CONFIG_DIR/starship.toml"
-  ln -s "$HOME/.dotfiles/starship.personal.toml" "$STARSHIP_CONFIG_DIR/starship.toml"
+  ln -s "$HOME/.dotfiles/starship.work.toml" "$STARSHIP_CONFIG_DIR/starship.toml"
 elif [[ -f "$STARSHIP_CONFIG_DIR/starship.toml" ]]; then
   echo "Backing up existing starship.toml"
   mv "$STARSHIP_CONFIG_DIR/starship.toml" "$STARSHIP_CONFIG_DIR/starship.toml.backup"
-  ln -s "$HOME/.dotfiles/starship.personal.toml" "$STARSHIP_CONFIG_DIR/starship.toml"
+  ln -s "$HOME/.dotfiles/starship.work.toml" "$STARSHIP_CONFIG_DIR/starship.toml"
 else
   echo "Linking $STARSHIP_CONFIG_DIR/starship.toml"
-  ln -s "$HOME/.dotfiles/starship.personal.toml" "$STARSHIP_CONFIG_DIR/starship.toml"
+  ln -s "$HOME/.dotfiles/starship.work.toml" "$STARSHIP_CONFIG_DIR/starship.toml"
 fi
 
-echo "✓ Personal dotfiles installed successfully"
+echo "✓ Work dotfiles installed successfully"
 echo ""
 echo "Next steps:"
 echo "  - Restart your shell or run: source ~/.config/fish/config.fish"
-echo "  - Ensure ~/.local/bin/jj-init-worktree.sh exists (optional)"
+echo "  - Ensure ~/.local/bin/check-auth-expiry.sh exists"
+echo "  - Ensure ~/.local/bin/jj-init-worktree.sh exists"
