@@ -1,14 +1,35 @@
-#[custom.aws_auth]
-#command = "echo '🚫 AWS'"
-#when = "test $(is_aws_auth_expired > /dev/null; echo $status) -ne 0"
-#format = "[$output]($style) "
-#style = "red bold"
+# ============================================================================
+# Custom Modules
+# ============================================================================
+#
+# [custom.auth_expiry]
+# Displays a warning when AWS or OIDC authentication tokens expire.
+# - Checks ~/.aws/credentials for aws_session_expiration
+# - Checks ~/.oidc/okta.jwt for OIDC token expiry
+# - Results cached for 1 hour to minimize performance impact
+# - Script: ~/.local/bin/check-auth-expiry.sh
+# - Run `infra auth refresh` to refresh credentials
+#
+# [custom.jj_auto_init]
+# Automatically initializes Jujutsu (jj) in git repositories and worktrees.
+# - Runs silently on every prompt in git repos
+# - Enables fast `jj status` commands (much faster than git status)
+# - Each worktree needs its own .jj/ directory (handled automatically)
+# - Script: ~/.local/bin/jj-init-worktree.sh
+# - More info: https://github.com/jj-vcs/jj
+#
+# ============================================================================
 
-#[custom.okta_auth]
-#command = "echo '🚫 okta jwt'"
-#when = "test $(is_okta_jwt_expired > /dev/null; echo $status) -ne 0"
-#format = "[$output]($style) "
-#style = "red bold"
+[custom.auth_expiry]
+command = "echo '⚠️  AUTH EXPIRED'"
+when = "! $HOME/.local/bin/check-auth-expiry.sh"
+format = "[$output]($style) "
+style = "red bold"
+
+[custom.jj_auto_init]
+command = "$HOME/.local/bin/jj-init-worktree.sh"
+when = "test -d .git -o -f .git"
+format = ""
 
 [buf]
 disabled = true
@@ -21,24 +42,46 @@ disabled = true
 format = "[$symbol$branch](bold purple)[:$remote_branch](bold green) "
 symbol = " "
 
-#[git_status]
-#style = "bold blue"
+[git_status]
+disabled = true
 
 #[git_metrics]
 #disabled = false
 
-# Disable username and hostname in normal cases
+# Disable username and hostname
 [username]
 disabled = true
 
 [hostname]
 disabled = true
 
-# Only show username@hostname when in SSH
-[env_var.SSH_CONNECTION]
-format = '[$user@$hostname]($style) '
-style = "bold blue"
-
 # Disable Python version display
 [python]
 disabled = true
+
+# Show command duration for slow commands
+[cmd_duration]
+min_time = 2000  # Only show if command takes >2s
+format = "took [$duration]($style) "
+
+# Visual feedback for command success/failure
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+# Keep directory path manageable
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+
+# Show background jobs
+[jobs]
+symbol = "✦"
+number_threshold = 1
+
+# Display current time
+# [time]
+# disabled = false
+# format = "[$time]($style) "
+# time_format = "%H:%M"
+# style = "dimmed white"
